@@ -14,7 +14,7 @@ import logo from "@/assets/logo-lGLL0Zb0.png";
 import { Label } from "@radix-ui/react-label";
 import { Link } from "react-router-dom";
 
-export function Signup() {
+export function SignUp() {
   return (
     <div className="flex justify-center items-center h-screen bg-gradient-to-r from-[#020024] via-[#5044e5] to-[#00d4ff]">
       <Card className="w-full max-w-sm">
@@ -69,4 +69,4 @@ export function Signup() {
   );
 }
 
-export default Signup;
+export default SignUp;
