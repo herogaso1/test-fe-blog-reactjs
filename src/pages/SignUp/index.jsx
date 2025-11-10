@@ -14,7 +14,7 @@ import logo from "@/assets/logo-lGLL0Zb0.png";
 import { Label } from "@radix-ui/react-label";
 import { Link } from "react-router-dom";
 import { toast } from "react-hot-toast";
-import { SignUpUser } from "@/components/services/api/user";
+import { SignUpUser } from "@/services/api/user";
 import { Spinner } from "@/components/ui/spinner";
 
 export function SignUp() {

@@ -1,6 +1,6 @@
 import { Input } from "@/components/ui/input";
 import React from "react";
-import { blogDetail } from "@/components/services/api/blog-detail.js";
+import { blogDetail } from "@/services/api/blog.js";
 import ContentLoader from "react-content-loader";
 import { useParams } from "react-router-dom";
 import Lottie from "lottie-react";

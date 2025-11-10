@@ -3,7 +3,7 @@ import Logo from "@/assets/logo-lGLL0Zb0.png";
 import { Input } from "@/components/ui/input";
 import { Link } from "react-router-dom";
 import { DialogAuth } from "@/components/DialogAuth";
-import { searchPosts } from "@/components/services/api/home.js";
+import { searchPosts } from "@/services/api/home.js";
 import Lottie from "lottie-react";
 import loadingAnimation from "@/assets/loading_files.json";
 

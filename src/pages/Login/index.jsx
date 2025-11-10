@@ -13,7 +13,7 @@ import { Input } from "@/components/ui/input";
 import logo from "@/assets/logo-lGLL0Zb0.png";
 import { Label } from "@radix-ui/react-label";
 import { Link } from "react-router-dom";
-import { loginUser } from "@/components/services/api/user";
+import { loginUser } from "@/services/api/user";
 import { Spinner } from "@/components/ui/spinner";
 import { toast } from "react-hot-toast";
 export function Login() {
