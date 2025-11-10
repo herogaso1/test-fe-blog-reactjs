@@ -10,25 +10,48 @@ import loadingAnimation from "@/assets/loading_files.json";
 function Home() {
   const [searchTitle, setSearchTitle] = useState("");
   const [posts, setPosts] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [hasSearched, setHasSearched] = useState(false);
 
   React.useEffect(() => {
     // Load initial posts
-    searchPosts({ title: "" })
+    setLoading(true);
+    searchPosts()
       .then((response) => {
-        setPosts(response.data);
+        console.log("API Response:", response.data); // Debug log
+        // Kiểm tra cấu trúc data
+        const postsData = Array.isArray(response.data)
+          ? response.data
+          : response.data?.posts || response.data?.data || [];
+        setPosts(postsData);
       })
       .catch((error) => {
         console.error("Error loading posts:", error);
+        setPosts([]); // Set empty array nếu lỗi
+      })
+      .finally(() => {
+        setLoading(false);
       });
   }, []);
 
   const handleSearch = () => {
+    setLoading(true);
+    setHasSearched(true);
     searchPosts({ title: searchTitle })
       .then((response) => {
-        setPosts(response.data);
+        console.log("Search Response:", response.data); // Debug log
+        // Kiểm tra cấu trúc data
+        const postsData = Array.isArray(response.data)
+          ? response.data
+          : response.data?.posts || response.data?.data || [];
+        setPosts(postsData);
       })
       .catch((error) => {
         console.error("Error searching posts:", error);
+        setPosts([]); // Set empty array nếu lỗi
+      })
+      .finally(() => {
+        setLoading(false);
       });
   };
 
@@ -63,7 +86,13 @@ function Home() {
             </div>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-8">
-            {posts.length === 0 ? (
+            {loading ? (
+              // Hiển thị skeleton loading khi đang tải
+              <div className="col-span-full text-center py-12">
+                <p className="text-muted-foreground">Loading...</p>
+              </div>
+            ) : posts.length === 0 && hasSearched ? (
+              // Chỉ hiển thị animation khi đã search và không có kết quả
               <div className="col-span-full flex flex-col items-center justify-center py-12">
                 <Lottie
                   animationData={loadingAnimation}
@@ -78,6 +107,7 @@ function Home() {
                 </p>
               </div>
             ) : (
+              // Hiển thị danh sách blog
               posts.map((post) => (
                 <div key={post._id}>
                   <Link

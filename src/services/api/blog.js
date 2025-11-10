@@ -5,7 +5,8 @@ export const blogDetail = async (id) => {
   return response;
 };
 
-export const createblog = async (blogData) => {
-  const response = await apiInstance.post("api/posts", blogData);
-  return response;
-};
+// export const createblog = async (blogData) => {
+//   const response = await apiInstance.post("api/posts", blogData);
+//   return response;
+// };
+
