@@ -21,14 +21,14 @@ function Header() {
     <div>
       <div className="xl:container mx-auto py-4 fixed top-0 left-0 right-0 z-50 bg-background">
         <div className="flex items-center justify-between px-6 md:px-16 lg:px-24 xl:px-32">
-          <a data-discover="true" href="/">
+          <Link to="/" data-discover="true">
             <img src={Logo} className="w-12 h-12" alt="" />
-          </a>
+          </Link>
           <div className="flex justify-end items-center gap-2">
             <Link to="/createblog">
               <button
                 data-slot="button"
-                className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg:not([className*='size-'])]:size-4 shrink-0 [&amp;_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive bg-blue-700 hover:bg-blue-600 h-9 px-4 py-2 has-[&gt;svg]:px-3 text-white"
+                className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg:not([className*='size-'])]:size-4 shrink-0 [&amp;_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive bg-[#5044e5] hover:bg-[#695ff1] h-9 px-4 py-2 has-[&gt;svg]:px-3 text-white"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"

@@ -15,7 +15,7 @@ export function DialogAuth({ isOpen, setIsOpen }) {
           <Link to="/login">
             <Button
               type="button"
-              className="w-full bg-white text-black hover:bg-blue-600 hover:text-white justify-start"
+              className="w-full bg-white text-black hover:bg-[#665de6] hover:text-white justify-start"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -41,7 +41,7 @@ export function DialogAuth({ isOpen, setIsOpen }) {
           <Link to="/signup">
             <Button
               type="button"
-              className="w-full bg-white text-black hover:bg-blue-600 hover:text-white  justify-start"
+              className="w-full bg-white text-black hover:bg-[#665de6] hover:text-white justify-start"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"

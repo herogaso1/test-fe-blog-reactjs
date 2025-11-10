@@ -10,7 +10,7 @@ function CreateBlog() {
             📝 Create a New Blog
           </h2>
           <div className="grid gap-6">
-            <form className="space-y-4">
+            <div className="space-y-4">
               <div className="grid gap-2  ">
                 <legend className="font-medium">Blog Image</legend>
                 <div className="border border-dashed border-gray-400 rounded-lg p-4 grid justify-center">
@@ -49,7 +49,7 @@ function CreateBlog() {
                   </label>
                 </div>
               </div>
-            </form>
+            </div>
             <div className="grid gap-2">
               <label
                 data-slot="label"
