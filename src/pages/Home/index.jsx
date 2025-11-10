@@ -87,7 +87,7 @@ function Home() {
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-8">
             {loading ? (
-              // Hiển thị skeleton loading khi đang tải
+              // Hiển thị loading khi đang tải
               <div className="col-span-full text-center py-12">
                 <p className="text-muted-foreground">Loading...</p>
               </div>
@@ -107,7 +107,7 @@ function Home() {
                 </p>
               </div>
             ) : (
-              // Hiển thị danh sách blog
+              // Hiển thị danh sách blog từ API
               posts.map((post) => (
                 <div key={post._id}>
                   <Link
@@ -123,15 +123,22 @@ function Home() {
                       />
                       <div className="p-4 bg-card">
                         <div className="flex gap-2 mb-2">
-                          <span className="inline-flex items-center justify-center border px-2 py-0.5 text-xs font-medium w-fit whitespace-nowrap shrink-0 overflow-hidden border-transparent bg-[#dcdafa] text-primary rounded-full">
-                            {post.tags[0]}
-                          </span>
+                          {post.tags &&
+                            post.tags.length > 0 &&
+                            post.tags.map((tag, index) => (
+                              <span
+                                key={index}
+                                className="inline-flex items-center justify-center border px-2 py-0.5 text-xs font-medium w-fit whitespace-nowrap shrink-0 overflow-hidden border-transparent bg-[#dcdafa] text-primary rounded-full"
+                              >
+                                {tag}
+                              </span>
+                            ))}
                         </div>
                         <h5 className="text-lg font-semibold mb-2 text-ellipsis whitespace-nowrap overflow-hidden">
                           {post.title}
                         </h5>
                         <p className="text-foreground mb-2 text-xs">
-                          {post.content.slice(0, 100)}...
+                          {post.content?.slice(0, 100)}...
                         </p>
                       </div>
                     </div>
