@@ -13,24 +13,27 @@ import { Input } from "@/components/ui/input";
 import logo from "@/assets/logo-lGLL0Zb0.png";
 import { Label } from "@radix-ui/react-label";
 import { Link } from "react-router-dom";
-import { loginUser } from "@/services/api/user";
 import { Spinner } from "@/components/ui/spinner";
 import { toast } from "react-hot-toast";
-export function Login() {
+import AuthContext from "@/contexts/authContext";
+function Login() {
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
   const [loading, setLoading] = React.useState(false);
 
+  const { loginUser } = React.useContext(AuthContext);
   const handleLogin = async () => {
+    // dùng toast để hiển thị lỗi nếu có , không set toast cứng
     try {
       if (!email || !password) {
         toast.error("Please fill in all fields");
         return;
       }
       setLoading(true);
-      const response = await loginUser({ email, password });
+      const response = await loginUser(email, password);
       console.log("Login successful:", response);
     } catch (error) {
+      toast.error(error.response?.data?.message || "Login failed");
       console.error("Login failed:", error);
     } finally {
       setLoading(false);

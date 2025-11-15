@@ -1,5 +1,5 @@
 import React from "react";
-import { createblog } from "../../components/services/api/create-blog";
+import { createblog } from "@/services/api/blog";
 
 function MyPost() {
   const handleCreateBlog = async (e) => {

@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Logo from "@/assets/logo-lGLL0Zb0.png";
 import { Input } from "@/components/ui/input";
 import { Link } from "react-router-dom";
 import { DialogAuth } from "@/components/DialogAuth";
-import { searchPosts } from "@/services/api/home.js";
+// import { searchPosts } from "@/services/api/home.js";
+import { getBlogs } from "@/services/api/blog";
 import Lottie from "lottie-react";
 import loadingAnimation from "@/assets/loading_files.json";
 
@@ -13,25 +14,21 @@ function Home() {
   const [loading, setLoading] = useState(true);
   const [hasSearched, setHasSearched] = useState(false);
 
-  React.useEffect(() => {
-    // Load initial posts
-    setLoading(true);
-    searchPosts()
-      .then((response) => {
-        console.log("API Response:", response.data); // Debug log
-        // Kiểm tra cấu trúc data
-        const postsData = Array.isArray(response.data)
-          ? response.data
-          : response.data?.posts || response.data?.data || [];
-        setPosts(postsData);
-      })
-      .catch((error) => {
-        console.error("Error loading posts:", error);
-        setPosts([]); // Set empty array nếu lỗi
-      })
-      .finally(() => {
-        setLoading(false);
-      });
+  const fetchAllPosts = async () => {
+    try {
+      setLoading(true);
+      const data = await getBlogs();
+      console.log("data:", data);
+      setPosts(data.data.items);
+    } catch (err) {
+      setError(err.message); // Hiển thị message ở đây
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchAllPosts();
   }, []);
 
   const handleSearch = () => {
@@ -119,7 +116,7 @@ function Home() {
                       <img
                         alt={post.title}
                         className="w-full h-48 object-cover"
-                        src={post.img}
+                        src={post.image}
                       />
                       <div className="p-4 bg-card">
                         <div className="flex gap-2 mb-2">

@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
 import Logo from "../../assets/logo-lGLL0Zb0.png";
 import { Link } from "react-router-dom";
-import { DialogAuth } from "../DialogAuth";
+import { DialogAuth } from "@/components/DialogAuth";
+import { useContext } from "react";
+import AuthContext from "@/contexts/authContext";
 
-function Header() {
-  const [isOpen, setIsOpen] = useState(false);
+const Header = () => {
+  const [isOpen, setIsOpen] = React.useState(false);
   const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
   useEffect(() => {
     if (theme === "dark") {
@@ -18,7 +20,7 @@ function Header() {
     setTheme(theme === "dark" ? "light" : "dark");
   };
   return (
-    <div>
+    <header>
       <div className="xl:container mx-auto py-4 fixed top-0 left-0 right-0 z-50 bg-background">
         <div className="flex items-center justify-between px-6 md:px-16 lg:px-24 xl:px-32">
           <Link to="/" data-discover="true">
@@ -99,8 +101,8 @@ function Header() {
         </div>
       </div>
       <DialogAuth isOpen={isOpen} setIsOpen={setIsOpen} />
-    </div>
+    </header>
   );
-}
+};
 
 export default Header;

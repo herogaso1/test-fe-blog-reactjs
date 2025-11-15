@@ -16,21 +16,23 @@ import { Link } from "react-router-dom";
 import { toast } from "react-hot-toast";
 import { SignUpUser } from "@/services/api/user";
 import { Spinner } from "@/components/ui/spinner";
+import AuthContext from "@/contexts/authContext";
 
 export function SignUp() {
   const [email, setEmail] = React.useState("");
   const [name, setName] = React.useState("");
   const [password, setPassword] = React.useState("");
   const [loading, setLoading] = React.useState(false);
+  const { signUpUser  } = React.useContext(AuthContext);
   const handleSignUp = async () => {
     try {
+      //dùng toast không set cứng message
       if (!email || !name || !password) {
         toast.error("Please fill in all fields");
         return;
       }
       setLoading(true);
-      const response = await SignUpUser({ email, username: name, password });
-      console.log("SignUp successful:", response);
+      await signUpUser({ email, username: name, password });
     } catch (error) {
       toast.error("SignUp failed:", error?.response?.data?.message);
     } finally {
